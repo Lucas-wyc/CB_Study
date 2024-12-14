@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-芒市勐焕大金塔-365-760</title>
+    <style>
+        * {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            max-width: 1000px; /* 调整整体宽度 */
+            margin: 40px auto;
+            border: 1px solid #dcdcdc;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+            background: #fff;
+            font-size: 16px;
+        }
+
+        .image-section {
+            width: 40%; /* 调整左侧图片宽度 */
+        }
+
+        .image-section img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px 0 0 15px;
+        }
+
+        .info-section {
+            width: 60%; /* 调整右侧内容的宽度 */
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: auto; /* 自适应高度 */
+        }
+
+        .info-header h2 {
+            font-size: 28px; /* 减小标题字体 */
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            flex-wrap: wrap;
+        }
+
+        .tags span {
+            background-color: #ffecb3;
+            color: #ff9800;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tags span.icon {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tags span.icon img {
+            width: 18px; /* 图标大小 */
+            height: 18px;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* 垂直居中 */
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            margin-top: 20px; /* 适当增加上部间距 */
+        }
+
+        .detail-item {
+            text-align: center;
+            flex: 1;
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 确保内容垂直居中 */
+            align-items: center; /* 确保内容水平居中 */
+        }
+
+        .detail-title {
+            font-size: 16px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .people-count-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .people-icons {
+            display: flex;
+            gap: 3px;
+        }
+
+        .person-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .person-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .people-count {
+            font-size: 20px;
+            color: #222;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-section">
+        <img src="芒市勐焕大金塔.jpg" alt="芒市勐焕大金塔">
+    </div>
+    <div class="info-section">
+        <div class="info-header">
+            <h2>芒市勐焕大金塔寺</h2>
+            <div class="tags">
+                <span class="icon">
+                    <img src="金牌.png" alt="金牌">
+                    入选2024年必玩榜
+                </span>
+                <span>可订明日</span>
+                <span>门票98元/人</span>
+            </div>
+        </div>
+        <div class="details">
+            <div class="detail-item">
+                <div class="rating-score" id="rating-reviews">365条</div>
+                <div class="detail-title">达人笔记数</div>
+            </div>
+            <div class="detail-item">
+                <div class="people-count-container">
+                    <div class="people-icons" id="people-icons"></div>
+                    <div class="people-count" id="people-count"><span id="people-number">760</span>人</div>
+                </div>
+                <div class="detail-title">实时人流量</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 渲染实时人流量小人图标
+        function renderPeopleCount(count) {
+            const container = document.getElementById('people-icons');
+            const countText = document.getElementById('people-number');
+            container.innerHTML = '';
+            countText.textContent = `${count}`;
+
+            const maxIcons = 5;
+            const ratio = count / 5000;
+            const fullIcons = Math.floor(ratio * maxIcons);
+            const partialPercentage = Math.round((ratio * maxIcons - fullIcons) * 100);
+
+            const personSVG = `
+                <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="32" cy="20" r="12" fill="#ddd"></circle>
+                    <path d="M32 36c-10 0-20 6-20 16v4h40v-4c0-10-10-16-20-16z" fill="#ddd"></path>
+                </svg>`;
+
+            for (let i = 0; i < fullIcons; i++) {
+                const icon = document.createElement('div');
+                icon.classList.add('person-icon');
+                icon.innerHTML = `
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="32" cy="20" r="12" fill="#28a745"></circle>
+                        <path d="M32 36c-10 0-20 6-20 16v4h40v-4c0-10-10-16-20-16z" fill="#28a745"></path>
+                    </svg>`;
+                container.appendChild(icon);
+            }
+
+            if (partialPercentage > 0 && fullIcons < maxIcons) {
+                const icon = document.createElement('div');
+                icon.classList.add('person-icon');
+                icon.innerHTML = `
+                    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <circle cx="32" cy="20" r="12" fill="#ddd"></circle>
+                            <path d="M32 36c-10 0-20 6-20 16v4h40v-4c0-10-10-16-20-16z" fill="#ddd"></path>
+                        </g>
+                        <g style="clip-path: inset(0 ${100 - partialPercentage}% 0 0)">
+                            <circle cx="32" cy="20" r="12" fill="#28a745"></circle>
+                            <path d="M32 36c-10 0-20 6-20 16v4h40v-4c0-10-10-16-20-16z" fill="#28a745"></path>
+                        </g>
+                    </svg>`;
+                container.appendChild(icon);
+            }
+
+            const remainingIcons = maxIcons - fullIcons - (partialPercentage > 0 ? 1 : 0);
+            for (let i = 0; i < remainingIcons; i++) {
+                const icon = document.createElement('div');
+                icon.classList.add('person-icon');
+                icon.innerHTML = personSVG;
+                container.appendChild(icon);
+            }
+        }
+
+        // 初始化人流量
+        renderPeopleCount(760);
+    </script>
+</body>
+</html>
